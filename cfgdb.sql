@@ -1,15 +1,5 @@
 /*
 Navicat MySQL Data Transfer
-
-Source Server         : newdbarma
-Source Server Version : 50717
-Source Host           : 192.168.178.16:3306
-Source Database       : cfgdb
-
-Target Server Type    : MYSQL
-Target Server Version : 50717
-File Encoding         : 65001
-
 Date: 2017-05-23 10:34:56
 */
 
@@ -48,7 +38,7 @@ CREATE TABLE `classes` (
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `find_all_attributes`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `find_all_attributes`(IN `in_id` int,IN `in_name` varchar(255))
+CREATE PROCEDURE `find_all_attributes`(IN `in_id` int,IN `in_name` varchar(255))
 BEGIN
 
 	call tmp_parents( in_id, in_name );
@@ -74,7 +64,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `find_children`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `find_children`(`in_id` int,`in_name` varchar(255))
+CREATE PROCEDURE `find_children`(`in_id` int,`in_name` varchar(255))
 BEGIN
 	#Routine body goes here...
 
@@ -87,7 +77,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `find_classpath`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `find_classpath`(IN `in_id` int,IN `in_name` varchar(255))
+CREATE PROCEDURE `find_classpath`(IN `in_id` int,IN `in_name` varchar(255))
 BEGIN
   declare o_parent_name varchar(255);
 	declare o_parent_id int;
@@ -116,7 +106,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `find_inherited_attributes`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `find_inherited_attributes`(IN `in_id` int,IN `in_name` varchar(255))
+CREATE PROCEDURE `find_inherited_attributes`(IN `in_id` int,IN `in_name` varchar(255))
 BEGIN
 	call tmp_parents( in_id, in_name );
 	drop table if exists tmp_res1;
@@ -140,7 +130,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `find_parents`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `find_parents`(IN `in_id` int,IN `in_name` varchar(64))
+CREATE PROCEDURE `find_parents`(IN `in_id` int,IN `in_name` varchar(64))
 BEGIN	
 	declare parent_class varchar(255);
   declare class_level int;
@@ -167,7 +157,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `tmp_classpath`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `tmp_classpath`(IN `in_id` int,IN `in_name` varchar(255))
+CREATE PROCEDURE `tmp_classpath`(IN `in_id` int,IN `in_name` varchar(255))
 BEGIN
   declare o_parent_name varchar(255);
 	declare o_parent_id int;
@@ -198,7 +188,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `tmp_parents`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `tmp_parents`(IN `in_id` int,IN `in_name` varchar(64))
+CREATE PROCEDURE `tmp_parents`(IN `in_id` int,IN `in_name` varchar(64))
 BEGIN	
 	declare parent_class varchar(255);
   declare class_level int;

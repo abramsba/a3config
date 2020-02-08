@@ -4,6 +4,8 @@ For people developing web applications for their groups, this is a way to create
 
 The script requires `pymysql`. 
 
+To dump the arma 3 configuration you'll need this extension: https://github.com/pennyworth12345/ConfigDumpFileIO
+
 Tables:
 
 * `classes`: any class
